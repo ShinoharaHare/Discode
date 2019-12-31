@@ -4,7 +4,7 @@ const fileWriter = require('../../common/file-writer');
 
 router.use(auth);
 
-router.post('/:item', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const src = await fileWriter.upload(req.files.file);
         console.log(src);
