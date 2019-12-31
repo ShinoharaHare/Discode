@@ -31,7 +31,6 @@ app.use(history());
 
 // 靜態檔案
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/content', express.static(path.join(__dirname, 'content')));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

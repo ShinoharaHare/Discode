@@ -45,7 +45,7 @@ const MessageSchema = mongoose.Schema({
     attachments: {
         images: {
             type: [{
-                id: String,
+                src: String,
                 name: String,
                 size: Number
             }],
@@ -53,7 +53,7 @@ const MessageSchema = mongoose.Schema({
         },
         files: {
             type: [{
-                id: String,
+                src: String,
                 name: String,
                 size: Number
             }],

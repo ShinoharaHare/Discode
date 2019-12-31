@@ -10,7 +10,7 @@ module.exports = (io) => {
             
             switch (msg.type) {
                 case 'attachment':
-                    attachments = resolveAttachments(msg);
+                    attachments = await resolveAttachments(msg);
                     break;
                 case 'code':
                     code = await resolveCode(msg);
@@ -38,23 +38,23 @@ module.exports = (io) => {
     });
 };
 
-function resolveAttachments(msg) {
+async function resolveAttachments(msg) {
     var attachments = {
         images: [],
         files: []
     };
     for (let file of msg.files) {
-        const id = fileWriter.write(file, `channel/${msg.channel}`);
+        const src = await fileWriter.upload(file);
 
         if (file.type.includes('image')) {
             attachments.images.push({
-                id: id,
+                src: src,
                 name: file.name,
                 size: file.size
             });
         } else {
             attachments.files.push({
-                id: id,
+                src: src,
                 name: file.name,
                 size: file.size
             });

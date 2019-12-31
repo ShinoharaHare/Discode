@@ -17,11 +17,11 @@ router.post('/:item', async (req, res) => {
                 break;
         }
 
-        const id = fileWriter.write(req.files.file, location);
+        const src = fileWriter.upload(req.files.file);
 
         res.json({
             success: true,
-            data: { id: id }
+            data: { src: src }
         });
     } catch (err) {
         console.log(err);
