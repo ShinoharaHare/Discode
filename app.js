@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(fileUpload());
 
 // 路由
-app.use('/', require(path.resolve('./routes/index')));
-app.use('/api', require(path.resolve('./routes/api')));
+app.use('/', require('./routes/index'));
+app.use('/api', require('./routes/api'));
 
 // 必須在這個位置
 app.use(history());
