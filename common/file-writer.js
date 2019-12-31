@@ -32,14 +32,13 @@ function write(file, location) {
 }
 
 async function upload(file) {
-    const hash = file.md5 || md5(file.data);
-    const ext = path.extname(file.name);
+    const name = /^file\..+$/.test(file.name) ? file.md5 + path.extname(file.name) : file.name;
 
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
 
     const meta = {
         'parents': ['1uQ28CIHeYW1TMjedb8arcm03wUDNlCwE'],
-        'name': hash + ext
+        'name': name
     };
 
     const media = {
