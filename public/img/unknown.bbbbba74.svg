@@ -1,0 +1,16 @@
+<svg width="447.99999999999994" height="447.99999999999994" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <polygon id="svg_1" fill="#FFDC69" points="335.3128967285156,0.6871163845062256 103.31288146972656,0.6871163845062256 103.31288146972656,8.687116384506226 103.31288146972656,40.687116384506226 23.312883377075195,40.687116384506226 23.312883377075195,144.68711638450623 103.31288146972656,144.68711638450623 103.31288146972656,176.68711638450623 103.31288146972656,448.6871163845062 215.31288146972656,448.6871163845062 311.3128967285156,448.6871163845062 423.3128967285156,448.6871163845062 423.3128967285156,88.68711638450623 423.3128967285156,80.68711638450623 343.3128967285156,0.6871163845062256 "/>
+  <rect id="svg_2" fill="#FF8C5A" height="104" width="272" y="40" x="24"/>
+  <polygon id="svg_5" fill="#FFB855" points="344,0 336,0 336,88 424,88 424,80 "/>
+  <text stroke="#ffffff" font-style="normal" font-weight="normal" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="155" id="svg_45" y="334.282182" x="224.88034" stroke-width="0" fill="#ffffff">?</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="78" id="svg_47" y="92.41722" x="54.625835" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="null" fill="#ffffff"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="45" id="svg_48" y="107.53378" x="40.196392" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="null" fill="#ffffff">UNKNOWN</text>
+ </g>
+</svg>

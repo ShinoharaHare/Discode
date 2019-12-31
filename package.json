@@ -1,0 +1,25 @@
+{
+    "name": "discode-back-end",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "compile-run": "latest",
+        "express-fileupload": "latest",
+        "md5": "latest",
+        "socket.io-cookie-parser": "latest",
+        "connect-history-api-fallback": "latest",
+        "socket.io": "latest",
+        "body-parser": "latest",
+        "jsonwebtoken": "latest",
+        "mongoose": "latest",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "morgan": "~1.9.1",
+        "pug": "2.0.0-beta11"
+    }
+}

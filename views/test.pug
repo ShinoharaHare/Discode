@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to title
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js")
+    script.
+        const socket = io();
+        socket.on('test', (data) => {
+            document.querySelector('h1').innerText = data.title;
+            document.querySelector('p').innerText = data.title;
+        });
+
+        function submit(){
+            socket.emit('test', {
+                title: document.querySelector('input').value
+            });
+        }
+    
+    input(type="text")
+    button(onclick="submit()") 送出
