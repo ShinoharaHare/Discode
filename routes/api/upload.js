@@ -7,16 +7,6 @@ router.use(auth);
 
 router.post('/:item', async (req, res) => {
     try {
-        var location;
-        switch (req.params.item) {
-            case 'avatar':
-                location = 'avatar';
-                break;
-            case 'icon':
-                location = 'icon';
-                break;
-        }
-
         const src = fileWriter.upload(req.files.file);
 
         res.json({

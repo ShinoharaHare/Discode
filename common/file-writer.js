@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const md5 = require('md5');
+const { Readable } = require('stream');
 const { google } = require('googleapis');
 
 
@@ -32,7 +33,7 @@ function write(file, location) {
 
 async function upload(file) {
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
-    
+
     const meta = {
         'parents': ['1uQ28CIHeYW1TMjedb8arcm03wUDNlCwE'],
         'name': file.name
@@ -40,7 +41,12 @@ async function upload(file) {
 
     const media = {
         mimeType: file.type,
-        body: file.data
+        body: new Readable({
+            read() {
+                this.push(file.data);
+                this.push(null);
+            }
+        })
     };
 
     var response = await drive.files.create({
@@ -53,7 +59,7 @@ async function upload(file) {
         fileId: response.data.id,
         fields: 'webContentLink'
     });
-    
+
     return response.data.webContentLink;
 }
 

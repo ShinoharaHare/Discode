@@ -39,4 +39,4 @@ async function upload() {
     return response.data.webContentLink;
 }
 
-upload();
+console.log(fs.createReadStream('D:/Projects/專題/Discode-Back-End/content/icon/190564239dd0fa259d6794a4df719899.png'))
