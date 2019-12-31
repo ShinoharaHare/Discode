@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--本Project識別-->
+    <groupId></groupId>
+    <artifactId></artifactId>
+    <version></version>
+
+    <packaging>jar</packaging>  <!--表示打包Project的型態,可能為Jar、war、ear或pom，若是使用了android 則為apk-->
+
+    <!--以下是給工具看的,主要是本Project的資訊-->
+    <name></name>
+    <url></url>
+
+    <!--設定一些變數-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--設定引用函式庫-->
+    <dependencies>
+    </dependencies>
+
+</project>
