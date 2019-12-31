@@ -32,11 +32,14 @@ function write(file, location) {
 }
 
 async function upload(file) {
+    const hash = file.md5 || md5(file.data);
+    const ext = path.extname(file.name);
+
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
 
     const meta = {
         'parents': ['1uQ28CIHeYW1TMjedb8arcm03wUDNlCwE'],
-        'name': file.name
+        'name': hash + ext
     };
 
     const media = {
@@ -52,11 +55,6 @@ async function upload(file) {
     var response = await drive.files.create({
         resource: meta,
         media: media,
-        fields: 'id'
-    });
-
-    response = await drive.files.get({
-        fileId: response.data.id,
         fields: 'webContentLink'
     });
 
