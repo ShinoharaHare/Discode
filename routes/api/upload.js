@@ -7,7 +7,7 @@ router.use(auth);
 
 router.post('/:item', async (req, res) => {
     try {
-        const src = fileWriter.upload(req.files.file);
+        const src = await fileWriter.upload(req.files.file);
 
         res.json({
             success: true,
