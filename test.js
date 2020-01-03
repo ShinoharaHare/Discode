@@ -12,31 +12,16 @@ const token = fs.readFileSync('token.json')
 oAuth2Client.setCredentials(JSON.parse(token));
 
 
-async function upload() {
+async function test() {
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
-    
-    const meta = {
-        'parents': ['1uQ28CIHeYW1TMjedb8arcm03wUDNlCwE'],
-        'name': '190564239dd0fa259d6794a4df719899.png'
-    };
-
-    const media = {
-        mimeType: 'image/jpeg',
-        body: fs.createReadStream('D:/Projects/專題/Discode-Back-End/content/icon/190564239dd0fa259d6794a4df719899.png')
-    };
-
-    var response = await drive.files.create({
-        resource: meta,
-        media: media,
-        fields: 'id'
-    });
-
-    response = await drive.files.get({
-        fileId: response.data.id,
-        fields: 'webContentLink'
-    });
-    
-    return response.data.webContentLink;
+    const response = await drive.files.create({
+        resource: {
+            name: 'Discode',
+            mimeType: 'application/vnd.google-apps.folder'
+        }
+    })
+    console.log(response);
 }
 
-console.log(fs.createReadStream('D:/Projects/專題/Discode-Back-End/content/icon/190564239dd0fa259d6794a4df719899.png'))
+
+test();

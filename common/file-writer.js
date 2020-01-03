@@ -37,7 +37,7 @@ async function upload(file) {
     const drive = google.drive({ version: 'v3', auth: oAuth2Client });
 
     const meta = {
-        'parents': ['1uQ28CIHeYW1TMjedb8arcm03wUDNlCwE'],
+        'parents': ['1b3HKtY_k2enMTaCrj-D-4xVmbMhngwKI'],
         'name': name
     };
 
