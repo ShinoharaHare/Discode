@@ -7,7 +7,7 @@ module.exports = (io) => {
     io.on('connection', async (socket) => {
         socket.on('message', async (msg) => {
             var attachments, code;
-            
+
             switch (msg.type) {
                 case 'attachment':
                     attachments = await resolveAttachments(msg);
@@ -17,7 +17,7 @@ module.exports = (io) => {
                     break;
             }
 
-            const message = await Message.create({
+            const messageDoc = await Message.create({
                 author: socket.user.id,
                 channel: msg.channel,
                 content: msg.content,
@@ -25,14 +25,17 @@ module.exports = (io) => {
                 code: code
             });
 
-            io.to(message.channel).emit('message', {
-                id: message.id,
-                channel: message.channel,
-                author: message.author,
-                content: message.content,
+            const message = {
+                id: messageDoc.id,
+                channel: messageDoc.channel,
+                author: messageDoc.author,
+                content: messageDoc.content,
                 attachments: attachments,
                 code: code
-            });
+            };
+
+            socket.emit('message', Object.assign(message, { nonce: msg.nonce }));
+            io.to(messageDoc.channel).emit('message', message);
         });
 
     });

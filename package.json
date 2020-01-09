@@ -8,21 +8,21 @@
         "test": "node test"
     },
     "dependencies": {
-        "googleapis": "latest",
-        "compile-run": "latest",
-        "express-fileupload": "latest",
-        "md5": "latest",
-        "socket.io-cookie-parser": "latest",
-        "connect-history-api-fallback": "latest",
-        "socket.io": "latest",
-        "body-parser": "latest",
-        "jsonwebtoken": "latest",
-        "mongoose": "latest",
+        "body-parser": "^1.19.0",
+        "compile-run": "^2.3.2",
+        "connect-history-api-fallback": "^1.6.0",
         "cookie-parser": "~1.4.4",
         "debug": "~2.6.9",
         "express": "~4.16.1",
+        "express-fileupload": "^1.1.6",
+        "googleapis": "^46.0.0",
         "http-errors": "~1.6.3",
+        "jsonwebtoken": "^8.5.1",
+        "md5": "^2.2.1",
+        "mongoose": "^5.8.6",
         "morgan": "~1.9.1",
-        "pug": "2.0.0-beta11"
+        "pug": "2.0.0-beta11",
+        "socket.io": "^2.3.0",
+        "socket.io-cookie-parser": "^1.0.0"
     }
 }
