@@ -3,7 +3,6 @@ const router = require('express').Router();
 const { auth } = require('../../common/middlewares');
 const { User } = require('../../common/models');
 const error = require('../../common/error');
-const { userStatus } = require('../../common/globals');
 
 router.get('/', auth, (req, res) => {
     try {
@@ -41,7 +40,7 @@ router.get('/:id', async (req, res) => {
                 nickname: user.nickname,
                 avatar: user.avatar,
                 message: user.message,
-                status: userStatus[user.id]
+                status: global.userStatus[user.id]
             }
         });
     } catch (err) {

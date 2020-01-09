@@ -1,5 +1,4 @@
-const { User, Channel } = require('../common/models');
-const { onlineUsers, sockets } = require('../common/globals');
+const { User, Channel, Message } = require('../common/models');
 
 module.exports = (io) => {
     io.on('connection', async (socket) => {
@@ -16,7 +15,7 @@ module.exports = (io) => {
         }
 
         socket.on('disconnect', async () => {
-            for (let id in onlineUsers) {
+            for (let id in global.onlineUsers) {
                 const channel = await Channel.findById(id);
                 leaveRoom(socket, channel);
             }
@@ -40,9 +39,9 @@ module.exports = (io) => {
                 };
 
                 if (channel.public) {
-                    for (let id in sockets) {
-                        await joinRoom(sockets[id], channel);
-                        sockets[id].emit('newChannel', channel);
+                    for (let id in global.sockets) {
+                        await joinRoom(global.sockets[id], channel);
+                        global.sockets[id].emit('newChannel', channel);
                     }
                 } else {
                     await joinRoom(socket, channel);
@@ -63,15 +62,30 @@ module.exports = (io) => {
                     channelDoc.members.push({ id: user.id });
                     const channel = await channelDoc.save();
 
-                    await joinRoom(sockets[user.id], channel);
+                    const MessageDocs = await Message.find({ channel: channelDoc.id }).limit(50);
+                    const messages = [];
+                    for (let message of MessageDocs) {
+                        messages.push({
+                            id: message.id,
+                            channel: message.channel,
+                            author: message.author,
+                            content: message.content,
+                            attachments: message.attachments,
+                            code: message.code
+                        });
+                    }
 
-                    sockets[user.id].emit('newChannel', {
+                    await global.sockets[user.id].emit('newChannel', {
                         id: channel.id,
                         name: channel.name,
                         icon: channel.icon,
                         public: channel.public,
-                        members: channel.members
+                        members: channel.members,
+                        messages, messages
                     });
+
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    joinRoom(global.sockets[user.id], channel);
                 }
             } catch (err) {
                 console.log(err);
@@ -84,9 +98,9 @@ module.exports = (io) => {
 
 async function joinRoom(socket, channel) {
     if (socket && channel) {
-        onlineUsers[channel.id].add(socket.user.id);
+        global.onlineUsers[channel.id].add(socket.user.id);
         await socket.join(channel.id);
-        socket.broadcast.emit('newMember', {
+        socket.broadcast.to(channel.id).emit('newMember', {
             channel: channel.id,
             member: { id: socket.user.id }
         });
@@ -95,10 +109,10 @@ async function joinRoom(socket, channel) {
 
 async function leaveRoom(socket, channel) {
     if (socket && channel) {
-        onlineUsers[channel.id].delete(socket.user.id);
+        global.onlineUsers[channel.id].delete(socket.user.id);
         await socket.leave(channel.id);
         if (channel.public) {
-            socket.server.emit('removeMember', {
+            socket.server.to(channel.id).emit('removeMember', {
                 channel: channel.id,
                 member: { id: socket.user.id }
             });

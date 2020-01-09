@@ -7,6 +7,8 @@ const logger = require('morgan');
 const history = require('connect-history-api-fallback');
 const fileUpload = require('express-fileupload');
 
+require('./global');
+
 const app = express();
 
 // view engine setup
