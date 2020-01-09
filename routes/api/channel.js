@@ -87,7 +87,10 @@ router.get('/:channel/members', async (req, res) => {
 router.get('/:channel/messages', async (req, res) => {
     try {
         const limit = Number(req.query.limit) || 50;
-        const data = await Message.find({ channel: req.params.channel }).limit(limit);
+        const data = await Message
+            .find({ channel: req.params.channel })
+            .limit(limit)
+            .sort({ 'timestamp': 'ascending' });
         var messages = [];
 
         for (let msg of data) {
