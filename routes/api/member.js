@@ -65,6 +65,14 @@ router.post('/register', async (req, res) => {
 });
 
 
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.json({
+        success: true
+    });
+});
+
+
 function generateToken(user) {
     const payload = {
         id: user.id,
